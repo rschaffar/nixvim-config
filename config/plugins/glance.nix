@@ -1,0 +1,3 @@
+{
+  plugins.glance.enable = true;
+}
