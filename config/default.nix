@@ -25,6 +25,12 @@
     ./plugins/misc.nix
   ];
 
+  extraConfigLuaPre = ''
+    -- Force color output for plugins that check this variable to determine whether to use colors or not.
+    -- Enabled because the glow plugin did not display colors
+    vim.env.CLICOLOR_FORCE = "1"
+  '';
+
   extraPackages = with pkgs; [
     # Formatters (not provided by LSP plugins)
     nixfmt
