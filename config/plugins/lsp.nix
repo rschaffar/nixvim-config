@@ -65,6 +65,14 @@
 
     keymaps = {
       lspBuf = {
+        # Standard LSP goto bindings
+        "gd" = "definition";
+        "gD" = "declaration";
+        "gi" = "implementation";
+        "gr" = "references";
+        "K" = "hover";
+
+        # Leader variants (kept as alternatives)
         "<leader>ld" = "definition";
         "<leader>lD" = "declaration";
         "<leader>li" = "implementation";

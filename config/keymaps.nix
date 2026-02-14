@@ -517,7 +517,7 @@
     # === MOVE TEXT ===
     {
       mode = "v";
-      key = "J";
+      key = "<A-j>";
       action = ":m '>+1<CR>gv=gv";
       options = {
         desc = "Move text down";
@@ -525,7 +525,7 @@
     }
     {
       mode = "v";
-      key = "K";
+      key = "<A-k>";
       action = ":m '<-2<CR>gv=gv";
       options = {
         desc = "Move text up";
