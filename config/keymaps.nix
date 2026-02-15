@@ -534,6 +534,48 @@
       };
     }
 
+    # === TROUBLE ===
+    {
+      mode = "n";
+      key = "<leader>xx";
+      action = "<cmd>Trouble diagnostics toggle<CR>";
+      options = {
+        desc = "Trouble diagnostics";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>xb";
+      action = "<cmd>Trouble diagnostics toggle filter.buf=0<CR>";
+      options = {
+        desc = "Trouble buffer diagnostics";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>xs";
+      action = "<cmd>Trouble symbols toggle focus=false<CR>";
+      options = {
+        desc = "Trouble document symbols";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>xq";
+      action = "<cmd>Trouble qflist toggle<CR>";
+      options = {
+        desc = "Trouble quickfix";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>xl";
+      action = "<cmd>Trouble loclist toggle<CR>";
+      options = {
+        desc = "Trouble location list";
+      };
+    }
+
     # === DEBUG (DAP) ===
     {
       mode = "n";

@@ -57,6 +57,10 @@
           __unkeyed-1 = "<leader>y";
           group = "Yank";
         }
+        {
+          __unkeyed-1 = "<leader>x";
+          group = "Trouble";
+        }
       ];
     };
   };

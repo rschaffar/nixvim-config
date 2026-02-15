@@ -20,6 +20,7 @@
     ./plugins/editing.nix
     ./plugins/ufo.nix
     ./plugins/glance.nix
+    ./plugins/trouble.nix
     ./plugins/spectre.nix
     ./plugins/session.nix
     ./plugins/misc.nix
