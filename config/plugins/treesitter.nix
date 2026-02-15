@@ -24,4 +24,12 @@
       scala
     ];
   };
+
+  plugins.treesitter-context = {
+    enable = true;
+    settings = {
+      max_lines = 0;
+      multiline_threshold = 20;
+    };
+  };
 }
