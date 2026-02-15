@@ -23,6 +23,7 @@
     ./plugins/spectre.nix
     ./plugins/session.nix
     ./plugins/misc.nix
+    ./plugins/render-markdown.nix
   ];
 
   extraConfigLuaPre = ''

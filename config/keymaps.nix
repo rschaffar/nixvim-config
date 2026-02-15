@@ -409,6 +409,22 @@
         desc = "Preview Markdown";
       };
     }
+    {
+      mode = "n";
+      key = "<leader>mr";
+      action = "<cmd>RenderMarkdown buf_toggle<CR>";
+      options = {
+        desc = "Toggle Markdown render";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>mp";
+      action = "<cmd>RenderMarkdown preview<CR>";
+      options = {
+        desc = "Markdown side preview";
+      };
+    }
 
     # === EXPAND REGION ===
     {
