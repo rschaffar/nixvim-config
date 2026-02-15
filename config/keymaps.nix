@@ -224,6 +224,80 @@
       };
     }
 
+    # Diffview
+    {
+      mode = "n";
+      key = "<leader>gD";
+      action = "<cmd>DiffviewOpen<CR>";
+      options = {
+        desc = "Diffview open";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gh";
+      action = "<cmd>DiffviewFileHistory %<CR>";
+      options = {
+        desc = "Diffview file history";
+      };
+    }
+    {
+      mode = "x";
+      key = "<leader>gh";
+      action = ":'<,'>DiffviewFileHistory<CR>";
+      options = {
+        desc = "Diffview line history";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gH";
+      action = "<cmd>DiffviewFileHistory<CR>";
+      options = {
+        desc = "Diffview history";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gT";
+      action = "<cmd>DiffviewToggleFiles<CR>";
+      options = {
+        desc = "Diffview toggle files";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gF";
+      action = "<cmd>DiffviewFocusFiles<CR>";
+      options = {
+        desc = "Diffview focus files";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gR";
+      action = "<cmd>DiffviewRefresh<CR>";
+      options = {
+        desc = "Diffview refresh";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gP";
+      action = "<cmd>DiffviewOpen origin/HEAD...HEAD --imply-local<CR>";
+      options = {
+        desc = "Diffview PR diff";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gL";
+      action = "<cmd>DiffviewFileHistory --range=origin/HEAD...HEAD --right-only --no-merges<CR>";
+      options = {
+        desc = "Diffview PR commits";
+      };
+    }
+
     # === NEO-TREE (Explorer) ===
     {
       mode = "n";
