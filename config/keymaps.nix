@@ -223,6 +223,54 @@
         desc = "Git log";
       };
     }
+    {
+      mode = "n";
+      key = "]h";
+      action = "<cmd>Gitsigns next_hunk<CR>";
+      options = {
+        desc = "Next git hunk";
+      };
+    }
+    {
+      mode = "n";
+      key = "[h";
+      action = "<cmd>Gitsigns prev_hunk<CR>";
+      options = {
+        desc = "Prev git hunk";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>ga";
+      action = "<cmd>Gitsigns stage_hunk<CR>";
+      options = {
+        desc = "Git stage hunk";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gr";
+      action = "<cmd>Gitsigns reset_hunk<CR>";
+      options = {
+        desc = "Git reset hunk";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gu";
+      action = "<cmd>Gitsigns preview_hunk<CR>";
+      options = {
+        desc = "Git preview hunk";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gB";
+      action = "<cmd>Gitsigns toggle_current_line_blame<CR>";
+      options = {
+        desc = "Git toggle line blame";
+      };
+    }
 
     # Diffview
     {
