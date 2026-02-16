@@ -1,7 +1,13 @@
 {
   plugins.mini = {
     enable = true;
-    modules.indentscope.draw.delay = 0;
+    mockDevIcons = true;
+    modules = {
+      indentscope.draw.delay = 0;
+      surround = { };
+      pairs = { };
+      icons = { };
+    };
   };
 
   autoCmd = [
