@@ -21,6 +21,7 @@
     ./plugins/ufo.nix
     ./plugins/glance.nix
     ./plugins/trouble.nix
+    ./plugins/fidget.nix
     ./plugins/spectre.nix
     ./plugins/session.nix
     ./plugins/misc.nix
