@@ -39,6 +39,26 @@
         "type": "github"
       }
     },
+    "kokoro-tts": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771346257,
+        "narHash": "sha256-YYem/G+wXmRvivl6oWoUtoeG9iL8MjEJ6vBUoYwnyCg=",
+        "owner": "rschaffar",
+        "repo": "kokoro-tts",
+        "rev": "0c1caf9c224b302385304d8d7e5cabe1bd99cc01",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rschaffar",
+        "repo": "kokoro-tts",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1771008912,
@@ -95,6 +115,7 @@
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
+        "kokoro-tts": "kokoro-tts",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim"
       }

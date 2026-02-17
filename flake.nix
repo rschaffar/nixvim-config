@@ -8,6 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
+    kokoro-tts = {
+      url = "github:rschaffar/kokoro-tts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -21,7 +25,7 @@
       ];
 
       perSystem =
-        { system, ... }:
+        { system, lib, ... }:
         let
           nixvimLib = nixvim.lib.${system};
           nixvim' = nixvim.legacyPackages.${system};
@@ -29,7 +33,11 @@
             inherit system;
             module = import ./config;
             extraSpecialArgs = {
-              # Add any extra arguments to pass to your modules here
+              kokoro-say =
+                if inputs.kokoro-tts.packages ? ${system} then
+                  inputs.kokoro-tts.packages.${system}.default
+                else
+                  null;
             };
           };
           nvim = nixvim'.makeNixvimWithModule nixvimModule;

@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  kokoro-say,
+  ...
+}:
 {
   imports = [
     ./options.nix
@@ -34,18 +39,20 @@
     vim.env.CLICOLOR_FORCE = "1"
   '';
 
-  extraPackages = with pkgs; [
-    # Formatters (not provided by LSP plugins)
-    nixfmt
-    stylua
+  extraPackages =
+    (with pkgs; [
+      # Formatters (not provided by LSP plugins)
+      nixfmt
+      stylua
 
-    # Tools
-    tree-sitter
-    nodejs_22
-    xclip
-    wl-clipboard
-    glow
-    lazygit
-    lazydocker
-  ];
+      # Tools
+      tree-sitter
+      nodejs_22
+      xclip
+      wl-clipboard
+      glow
+      lazygit
+      lazydocker
+    ])
+    ++ lib.optional (kokoro-say != null) kokoro-say;
 }
