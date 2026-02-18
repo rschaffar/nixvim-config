@@ -22,6 +22,10 @@
       yaml
       toml
       scala
+      javascript
+      typescript
+      tsx
+      jsdoc
     ];
   };
 

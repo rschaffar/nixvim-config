@@ -23,6 +23,8 @@
 
       bashls.enable = true;
       jsonls.enable = true;
+      ts_ls.enable = true;
+      eslint.enable = true;
 
       clangd = {
         enable = true;

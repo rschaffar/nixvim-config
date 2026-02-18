@@ -1,23 +1,5 @@
 {
   autoCmd = [
-    # Auto-format Lua files with stylua on save
-    {
-      event = "BufWritePost";
-      pattern = "*.lua";
-      callback.__raw = ''
-        function()
-          local path = vim.api.nvim_buf_get_name(0)
-          local out = vim.fn.system({ "stylua", path })
-          if vim.v.shell_error ~= 0 then
-            vim.notify("stylua failed: " .. out, vim.log.levels.ERROR)
-            return
-          end
-          local view = vim.fn.winsaveview()
-          vim.cmd("checktime")
-          vim.fn.winrestview(view)
-        end
-      '';
-    }
   ];
 
   # BufOnly command

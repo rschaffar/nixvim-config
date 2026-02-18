@@ -43,7 +43,6 @@
     (with pkgs; [
       # Formatters (not provided by LSP plugins)
       nixfmt
-      stylua
 
       # Tools
       tree-sitter
