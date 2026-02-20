@@ -2,7 +2,7 @@
   plugins.lualine = {
     enable = true;
     settings = {
-      options.theme = "gruvbox";
+      options.theme = "auto";
       tabline = {
         lualine_a = [
           {

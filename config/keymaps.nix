@@ -65,6 +65,14 @@
         desc = "Keymaps";
       };
     }
+    {
+      mode = "n";
+      key = "<leader>ft";
+      action = "<cmd>lua ThemeSwitcher()<CR>";
+      options = {
+        desc = "Find Theme";
+      };
+    }
 
     # === SPECTRE (Search/Replace) ===
     {
