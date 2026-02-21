@@ -1,12 +1,15 @@
 { pkgs, ... }:
 {
   # Default colorscheme (change this to set a different default)
-  colorschemes.gruvbox.enable = true;
+  colorschemes.tokyonight = {
+    enable = true;
+    settings.style = "moon";
+  };
 
   # Additional colorscheme plugins (available for runtime switching)
   extraPlugins = with pkgs.vimPlugins; [
+    gruvbox-nvim
     catppuccin-nvim
-    tokyonight-nvim
     rose-pine
     kanagawa-nvim
     onedark-nvim
