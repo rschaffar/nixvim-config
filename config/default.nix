@@ -31,6 +31,7 @@
     ./plugins/session.nix
     ./plugins/misc.nix
     ./plugins/render-markdown.nix
+    ./plugins/tips.nix
   ];
 
   extraConfigLuaPre = ''
