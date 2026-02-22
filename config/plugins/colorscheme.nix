@@ -3,7 +3,10 @@
   # Default colorscheme (change this to set a different default)
   colorschemes.tokyonight = {
     enable = true;
-    settings.style = "moon";
+    settings = {
+      style = "moon";
+      transparent = true;
+    };
   };
 
   # Additional colorscheme plugins (available for runtime switching)
