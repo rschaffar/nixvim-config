@@ -919,6 +919,16 @@
       };
     }
 
+    # === LSP ===
+    {
+      mode = "n";
+      key = "<leader>ih";
+      action.__raw = "function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end";
+      options = {
+        desc = "Toggle inlay hints";
+      };
+    }
+
     # === LSP SYMBOLS (Telescope) ===
     {
       mode = "n";
