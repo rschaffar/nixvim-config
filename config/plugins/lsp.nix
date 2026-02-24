@@ -70,20 +70,8 @@
 
     keymaps = {
       lspBuf = {
-        # Standard LSP goto bindings
-        "gd" = "definition";
         "gD" = "declaration";
-        "gi" = "implementation";
-        "gr" = "references";
         "K" = "hover";
-
-        # Leader variants (kept as alternatives)
-        "<leader>ld" = "definition";
-        "<leader>lD" = "declaration";
-        "<leader>li" = "implementation";
-        "<leader>lt" = "type_definition";
-        "<leader>lh" = "hover";
-        "<leader>lr" = "references";
         "<leader>rr" = "rename";
       };
       diagnostic."<leader>d" = "open_float";

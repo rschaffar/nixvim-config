@@ -777,37 +777,46 @@
       };
     }
 
-    # === GLANCE ===
+    # === GLANCE (LSP goto) ===
     {
       mode = "n";
-      key = "<leader>lgd";
+      key = "gd";
       action = "<cmd>Glance definitions<CR>";
       options = {
-        desc = "Glance definitions";
+        desc = "Goto definition";
       };
     }
     {
       mode = "n";
-      key = "<leader>lgr";
+      key = "gr";
       action = "<cmd>Glance references<CR>";
       options = {
-        desc = "Glance references";
+        desc = "Goto references";
       };
     }
     {
       mode = "n";
-      key = "<leader>lgt";
-      action = "<cmd>Glance type_definitions<CR>";
-      options = {
-        desc = "Glance type definitions";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>lgi";
+      key = "gi";
       action = "<cmd>Glance implementations<CR>";
       options = {
-        desc = "Glance implementations";
+        desc = "Goto implementation";
+      };
+    }
+    {
+      mode = "n";
+      key = "gy";
+      action = "<cmd>Glance type_definitions<CR>";
+      options = {
+        desc = "Goto type definition";
+      };
+    }
+    # Original gi (go to last insert position) remapped to gI
+    {
+      mode = "n";
+      key = "gI";
+      action.__raw = "function() vim.cmd('normal! `^') vim.cmd('startinsert') end";
+      options = {
+        desc = "Go to last insert position";
       };
     }
 
