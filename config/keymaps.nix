@@ -67,7 +67,7 @@
     }
     {
       mode = "n";
-      key = "<leader>ft";
+      key = "<leader>fT";
       action = "<cmd>lua ThemeSwitcher()<CR>";
       options = {
         desc = "Find Theme";

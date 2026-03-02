@@ -29,6 +29,9 @@
     ./plugins/noice.nix
     ./plugins/spectre.nix
     ./plugins/session.nix
+    ./plugins/flash.nix
+    ./plugins/todo-comments.nix
+    ./plugins/undotree.nix
     ./plugins/misc.nix
     ./plugins/render-markdown.nix
     ./plugins/tips.nix
