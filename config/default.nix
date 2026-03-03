@@ -32,6 +32,9 @@
     ./plugins/flash.nix
     ./plugins/todo-comments.nix
     ./plugins/undotree.nix
+    ./plugins/treesitter-textobjects.nix
+    ./plugins/lint.nix
+    ./plugins/indent-blankline.nix
     ./plugins/misc.nix
     ./plugins/render-markdown.nix
     ./plugins/tips.nix
