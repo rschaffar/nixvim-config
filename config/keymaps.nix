@@ -532,6 +532,14 @@
     # === DIAGNOSTICS ===
     {
       mode = "n";
+      key = "<leader>d";
+      action.__raw = "function() vim.diagnostic.open_float() end";
+      options = {
+        desc = "Diagnostic float";
+      };
+    }
+    {
+      mode = "n";
       key = "]w";
       action.__raw = "function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN }) end";
       options = {

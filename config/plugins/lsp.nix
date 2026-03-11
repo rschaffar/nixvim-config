@@ -98,7 +98,6 @@
         "K" = "hover";
         "<leader>rr" = "rename";
       };
-      diagnostic."<leader>d" = "open_float";
     };
   };
 
