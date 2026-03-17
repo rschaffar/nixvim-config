@@ -30,6 +30,27 @@
           group = "Search/Replace";
         }
         {
+          __unkeyed-1 = "<leader>sj";
+          desc = "Flash jump";
+        }
+        {
+          __unkeyed-1 = "<leader>sm";
+          desc = "Flash remote";
+          mode = "o";
+        }
+        {
+          __unkeyed-1 = "<leader>ss";
+          desc = "Flash TS search";
+          mode = [
+            "o"
+            "x"
+          ];
+        }
+        {
+          __unkeyed-1 = "<leader>st";
+          desc = "Flash treesitter";
+        }
+        {
           __unkeyed-1 = "<leader>e";
           group = "Explorer";
         }
