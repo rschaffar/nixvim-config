@@ -65,7 +65,7 @@
     }
     {
       mode = "o";
-      key = "r";
+      key = "<leader>sm";
       action.__raw = "function() require('flash').remote() end";
       options = {
         desc = "Flash remote";
@@ -76,7 +76,7 @@
         "o"
         "x"
       ];
-      key = "R";
+      key = "<leader>ss";
       action.__raw = "function() require('flash').treesitter_search() end";
       options = {
         desc = "Flash treesitter search";
