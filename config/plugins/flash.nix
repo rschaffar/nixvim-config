@@ -45,7 +45,7 @@
         "x"
         "o"
       ];
-      key = "s";
+      key = "<leader>sj";
       action.__raw = "function() require('flash').jump() end";
       options = {
         desc = "Flash jump";
@@ -57,7 +57,7 @@
         "x"
         "o"
       ];
-      key = "S";
+      key = "<leader>st";
       action.__raw = "function() require('flash').treesitter() end";
       options = {
         desc = "Flash treesitter";
