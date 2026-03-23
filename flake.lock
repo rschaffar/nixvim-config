@@ -46,11 +46,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772480279,
-        "narHash": "sha256-dD8IIsiFFr4xC8XkV2p24MxYvNEh/k6D/MLuNsFcOKo=",
+        "lastModified": 1774289779,
+        "narHash": "sha256-q4G/KUWUMAIzowzGHTAFb947TwCV7I3x4fUvIBj8ehQ=",
         "owner": "rschaffar",
         "repo": "kokoro-tts",
-        "rev": "a7bb22382492a0b6c536fe3d1852ec9616a35f48",
+        "rev": "2d065607a5b6fa2e711c72d99d836d9ed0d9e86b",
         "type": "github"
       },
       "original": {
@@ -61,11 +61,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1772963539,
-        "narHash": "sha256-9jVDGZnvCckTGdYT53d/EfznygLskyLQXYwJLKMPsZs=",
+        "lastModified": 1774106199,
+        "narHash": "sha256-US5Tda2sKmjrg2lNHQL3jRQ6p96cgfWh3J1QBliQ8Ws=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9dcb002ca1690658be4a04645215baea8b95f31d",
+        "rev": "6c9a78c09ff4d6c21d0319114873508a6ec01655",
         "type": "github"
       },
       "original": {
