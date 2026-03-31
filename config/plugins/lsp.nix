@@ -70,10 +70,6 @@
       };
 
       texlab.enable = true;
-      jdtls = {
-        enable = true;
-        rootMarkers = [ ".git" ];
-      };
       metals.enable = true;
 
       basedpyright = {

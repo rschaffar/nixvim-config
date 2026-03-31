@@ -63,6 +63,10 @@
           group = "Glance";
         }
         {
+          __unkeyed-1 = "<leader>j";
+          group = "Java";
+        }
+        {
           __unkeyed-1 = "<leader>m";
           group = "Markdown";
         }

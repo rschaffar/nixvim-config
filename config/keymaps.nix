@@ -937,6 +937,96 @@
       };
     }
 
+    # === JAVA ===
+    {
+      mode = "n";
+      key = "<leader>jc";
+      action.__raw = "function() require('jdtls').test_class({ config_overrides = { noDebug = true } }) end";
+      options = {
+        desc = "Java: Run test class";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>jC";
+      action = "<cmd>lua require('jdtls').test_class()<CR>";
+      options = {
+        desc = "Java: Debug test class";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>jm";
+      action.__raw = "function() require('jdtls').test_nearest_method({ config_overrides = { noDebug = true } }) end";
+      options = {
+        desc = "Java: Run nearest test";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>jM";
+      action = "<cmd>lua require('jdtls').test_nearest_method()<CR>";
+      options = {
+        desc = "Java: Debug nearest test";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>ji";
+      action = "<cmd>lua require('jdtls').organize_imports()<CR>";
+      options = {
+        desc = "Java: Organize imports";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>jf";
+      action.__raw = "function() require('neotest').run.run(vim.fn.expand('%')) end";
+      options = {
+        desc = "Java: Neotest file";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>jF";
+      action.__raw = "function() require('neotest').run.run({ vim.fn.expand('%'), strategy = 'dap' }) end";
+      options = {
+        desc = "Java: Neotest debug file";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>jn";
+      action.__raw = "function() require('neotest').run.run() end";
+      options = {
+        desc = "Java: Neotest nearest";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>jN";
+      action.__raw = "function() require('neotest').run.run({ strategy = 'dap' }) end";
+      options = {
+        desc = "Java: Neotest debug nearest";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>js";
+      action = "<cmd>lua require('neotest').summary.toggle()<CR>";
+      options = {
+        desc = "Java: Neotest summary";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>jo";
+      action = "<cmd>lua require('neotest').output_panel.toggle()<CR>";
+      options = {
+        desc = "Java: Neotest output";
+      };
+    }
+
     # === LSP SYMBOLS (Telescope) ===
     {
       mode = "n";

@@ -15,6 +15,7 @@
     ./plugins/neo-tree.nix
     ./plugins/treesitter.nix
     ./plugins/lsp.nix
+    ./plugins/java.nix
     ./plugins/cmp.nix
     ./plugins/copilot.nix
     ./plugins/git.nix

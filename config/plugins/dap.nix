@@ -86,22 +86,7 @@ in
       },
     }
 
-    -- Java adapter (attach mode)
-    dap.adapters.java = function(callback, config)
-      local host = config.hostName or config.host or "127.0.0.1"
-      local port = config.port or 5005
-      callback({ type = "server", host = host, port = port })
-    end
-
-    dap.configurations.java = {
-      {
-        type = "java",
-        request = "attach",
-        name = "Attach to JVM",
-        hostName = "127.0.0.1",
-        port = 5005,
-      },
-    }
+    -- Java DAP is configured by nvim-jdtls in config/plugins/java.nix.
   '';
 
   extraPackages = [ debugpyPython ];
