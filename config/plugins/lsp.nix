@@ -91,7 +91,6 @@
     keymaps = {
       lspBuf = {
         "gD" = "declaration";
-        "K" = "hover";
         "<leader>rr" = "rename";
       };
     };
@@ -108,9 +107,22 @@
   extraConfigLua = ''
     require("neodev").setup()
     local border = "rounded"
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
     vim.diagnostic.config({ float = { border = border } })
+
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = vim.api.nvim_create_augroup("UserLspBorderMappings", { clear = true }),
+      callback = function(args)
+        local opts = { buffer = args.buf, silent = true }
+
+        vim.keymap.set("n", "K", function()
+          vim.lsp.buf.hover({ border = border })
+        end, vim.tbl_extend("force", opts, { desc = "LSP hover" }))
+
+        vim.keymap.set("i", "<C-s>", function()
+          vim.lsp.buf.signature_help({ border = border })
+        end, vim.tbl_extend("force", opts, { desc = "LSP signature help" }))
+      end,
+    })
 
     vim.api.nvim_create_user_command("Format", function()
       vim.lsp.buf.format()

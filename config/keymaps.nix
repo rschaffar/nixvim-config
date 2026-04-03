@@ -541,7 +541,7 @@
     {
       mode = "n";
       key = "]w";
-      action.__raw = "function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN }) end";
+      action.__raw = "function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.WARN }) end";
       options = {
         desc = "Next warning";
       };
@@ -549,7 +549,7 @@
     {
       mode = "n";
       key = "[w";
-      action.__raw = "function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN }) end";
+      action.__raw = "function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.WARN }) end";
       options = {
         desc = "Prev warning";
       };
@@ -557,7 +557,7 @@
     {
       mode = "n";
       key = "]e";
-      action.__raw = "function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end";
+      action.__raw = "function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR }) end";
       options = {
         desc = "Next error";
       };
@@ -565,7 +565,7 @@
     {
       mode = "n";
       key = "[e";
-      action.__raw = "function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end";
+      action.__raw = "function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR }) end";
       options = {
         desc = "Prev error";
       };
