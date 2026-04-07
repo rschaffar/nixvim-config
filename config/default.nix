@@ -2,6 +2,7 @@
   pkgs,
   lib,
   kokoro-say,
+  light ? false,
   ...
 }:
 {
@@ -15,11 +16,8 @@
     ./plugins/neo-tree.nix
     ./plugins/treesitter.nix
     ./plugins/lsp.nix
-    ./plugins/java.nix
     ./plugins/cmp.nix
     ./plugins/copilot.nix
-    ./plugins/git.nix
-    ./plugins/dap.nix
     ./plugins/harpoon.nix
     ./plugins/which-key.nix
     ./plugins/mini.nix
@@ -39,6 +37,11 @@
     ./plugins/misc.nix
     ./plugins/render-markdown.nix
     ./plugins/tips.nix
+  ]
+  ++ lib.optionals (!light) [
+    ./plugins/java.nix
+    ./plugins/git.nix
+    ./plugins/dap.nix
   ];
 
   extraConfigLuaPre = ''
@@ -54,6 +57,8 @@
 
       # Tools
       tree-sitter
+    ])
+    ++ lib.optionals (!light) (with pkgs; [
       nodejs_22
       xclip
       wl-clipboard
@@ -61,5 +66,5 @@
       lazygit
       lazydocker
     ])
-    ++ lib.optional (kokoro-say != null) kokoro-say;
+    ++ lib.optional (!light && kokoro-say != null) kokoro-say;
 }

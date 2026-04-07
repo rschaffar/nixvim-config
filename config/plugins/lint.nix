@@ -1,6 +1,11 @@
-{ pkgs, ... }:
 {
-  plugins.lint = {
+  pkgs,
+  lib,
+  light ? false,
+  ...
+}:
+{
+  plugins.lint = lib.mkIf (!light) {
     enable = true;
     lintersByFt = {
       bash = [ "shellcheck" ];
@@ -26,10 +31,10 @@
     };
   };
 
-  extraPackages = with pkgs; [
+  extraPackages = lib.optionals (!light) (with pkgs; [
     shellcheck
     mypy
     markdownlint-cli
     eslint_d
-  ];
+  ]);
 }

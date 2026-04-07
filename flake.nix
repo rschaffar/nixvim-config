@@ -29,28 +29,37 @@
         let
           nixvimLib = nixvim.lib.${system};
           nixvim' = nixvim.legacyPackages.${system};
-          nixvimModule = {
+
+          mkNixvimModule = light: {
             inherit system;
             module = import ./config;
             extraSpecialArgs = {
+              inherit light;
               kokoro-say =
-                if inputs.kokoro-tts.packages ? ${system} then
+                if !light && inputs.kokoro-tts.packages ? ${system} then
                   inputs.kokoro-tts.packages.${system}.default
                 else
                   null;
             };
           };
+
+          nixvimModule = mkNixvimModule false;
+          lightNixvimModule = mkNixvimModule true;
+
           nvim = nixvim'.makeNixvimWithModule nixvimModule;
+          nvimLight = nixvim'.makeNixvimWithModule lightNixvimModule;
         in
         {
           checks = {
             # Run `nix flake check .` to verify that your config is not broken
             default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
+            light = nixvimLib.check.mkTestDerivationFromNixvimModule lightNixvimModule;
           };
 
           packages = {
             # Lets you run `nix run .` to start nixvim
             default = nvim;
+            light = nvimLight;
           };
         };
     };

@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  light ? false,
+  ...
+}:
 {
   plugins.lsp = {
     enable = true;
@@ -12,7 +17,8 @@
           telemetry.enable = false;
         };
       };
-
+    }
+    // lib.optionalAttrs (!light) {
       nixd = {
         enable = true;
         settings.nixd = {
@@ -97,8 +103,8 @@
   };
 
   plugins.schemastore = {
-    enable = true;
-    json.enable = true;
+    enable = !light;
+    json.enable = !light;
     yaml.enable = false;
   };
 

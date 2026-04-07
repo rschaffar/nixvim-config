@@ -26,12 +26,17 @@ A fully declarative Neovim configuration built as a [Nix flake](https://nixos.wi
 ## Usage
 
 ```bash
-# Run directly
+# Run the full config directly
 nix run github:rschaffar/nixvim-config
 
-# Verify config builds without errors
+# Run the light config for headless / low-bandwidth machines
+nix run github:rschaffar/nixvim-config#light
+
+# Verify both configs build without errors
 nix flake check
 ```
+
+The `light` output disables the heaviest bundled tooling (Java, C/C++, Python, Scala, JS/TS, Bash, Nix LSP stacks, DAP helpers, Git tooling, extra desktop utilities, and Kokoro TTS) while keeping the core editor/plugins.
 
 To integrate into an existing flake, add this as an input and include the package in your environment.
 

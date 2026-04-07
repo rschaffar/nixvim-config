@@ -1,4 +1,9 @@
 {
+  lib,
+  light ? false,
+  ...
+}:
+{
   keymaps = [
     # === TELESCOPE (Find) ===
     {
@@ -174,6 +179,7 @@
       };
     }
 
+  ] ++ lib.optionals (!light) [
     # === GIT ===
     {
       mode = "n";
@@ -354,6 +360,7 @@
       };
     }
 
+  ] ++ [
     # === NEO-TREE (Explorer) ===
     {
       mode = "n";
@@ -457,6 +464,7 @@
     }
 
     # === MARKDOWN ===
+  ] ++ lib.optionals (!light) [
     {
       mode = "n";
       key = "<leader>mg";
@@ -465,6 +473,7 @@
         desc = "Preview Markdown";
       };
     }
+  ] ++ [
     {
       mode = "n";
       key = "<leader>mr";
@@ -482,6 +491,7 @@
       };
     }
 
+  ] ++ lib.optionals (!light) [
     # === TTS (Text-to-Speech) ===
     {
       mode = "v";
@@ -502,6 +512,7 @@
         desc = "Speak selection (TTS)";
       };
     }
+  ] ++ [
 
     # === EXPAND REGION ===
     {
@@ -613,6 +624,7 @@
       };
     }
 
+  ] ++ lib.optionals (!light) [
     # === DEBUG (DAP) ===
     {
       mode = "n";
@@ -695,6 +707,7 @@
       };
     }
 
+  ] ++ [
     # === SPLITS ===
     {
       mode = "n";
@@ -937,6 +950,7 @@
       };
     }
 
+  ] ++ lib.optionals (!light) [
     # === JAVA ===
     {
       mode = "n";
@@ -1027,6 +1041,7 @@
       };
     }
 
+  ] ++ [
     # === LSP SYMBOLS (Telescope) ===
     {
       mode = "n";
