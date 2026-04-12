@@ -46,11 +46,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775930642,
-        "narHash": "sha256-AU202DexBjYx/hiVprmRVCYcpndhcWZqhB7+ajNgHm0=",
+        "lastModified": 1775960383,
+        "narHash": "sha256-PTedBTVmiqUeVNITSqh0G/Rq0KfW8tdwdyHiCxrKcpM=",
         "owner": "rschaffar",
         "repo": "kokoro-tts",
-        "rev": "8797a0e09962efdd7b5ea5e501d68f8b1ce82c86",
+        "rev": "17d96c8a7de4fc8753eae736994b754512464030",
         "type": "github"
       },
       "original": {
