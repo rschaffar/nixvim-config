@@ -79,19 +79,19 @@
       };
     }
 
-    # === SPECTRE (Search/Replace) ===
+    # === GRUG-FAR (Search/Replace) ===
     {
       mode = "n";
       key = "<leader>sr";
-      action = "<cmd>lua require('spectre').toggle()<CR>";
+      action.__raw = "function() require('grug-far').open({ transient = true }) end";
       options = {
-        desc = "Toggle Spectre";
+        desc = "Search and replace";
       };
     }
     {
       mode = "n";
       key = "<leader>sw";
-      action = "<cmd>lua require('spectre').open_visual({select_word=true})<CR>";
+      action.__raw = "function() require('grug-far').open({ transient = true, prefills = { search = vim.fn.expand('<cword>') } }) end";
       options = {
         desc = "Search current word";
       };
@@ -99,7 +99,7 @@
     {
       mode = "v";
       key = "<leader>sw";
-      action = "<cmd>lua require('spectre').open_visual()<CR>";
+      action.__raw = "function() require('grug-far').open({ transient = true }) end";
       options = {
         desc = "Search selection";
       };
@@ -107,7 +107,7 @@
     {
       mode = "n";
       key = "<leader>sp";
-      action = "<cmd>lua require('spectre').open_file_search({select_word=true})<CR>";
+      action.__raw = "function() require('grug-far').open({ transient = true, prefills = { search = vim.fn.expand('<cword>'), paths = vim.fn.expand('%') } }) end";
       options = {
         desc = "Search in current file";
       };

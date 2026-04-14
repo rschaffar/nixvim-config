@@ -26,7 +26,7 @@
     ./plugins/glance.nix
     ./plugins/trouble.nix
     ./plugins/noice.nix
-    ./plugins/spectre.nix
+    ./plugins/grug-far.nix
     ./plugins/session.nix
     ./plugins/flash.nix
     ./plugins/todo-comments.nix
