@@ -2,10 +2,7 @@
 {
   plugins.comment.enable = true;
 
-  plugins.refactoring = {
-    enable = true;
-    enableTelescope = true;
-  };
+  plugins.refactoring.enable = true;
 
   # vim-expand-region (no native nixvim support)
   extraPlugins = with pkgs.vimPlugins; [

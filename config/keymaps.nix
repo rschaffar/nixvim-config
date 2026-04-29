@@ -848,33 +848,45 @@
         "x"
       ];
       key = "<leader>rt";
-      action = "<cmd>Telescope refactoring refactors<CR>";
+      action.__raw = "function() require('refactoring').select_refactor() end";
       options = {
         desc = "Select refactor";
       };
     }
     {
-      mode = "x";
+      mode = [
+        "n"
+        "x"
+      ];
       key = "<leader>re";
-      action = ":Refactor extract ";
+      action.__raw = "function() return require('refactoring').extract_func() end";
       options = {
         desc = "Extract function";
+        expr = true;
       };
     }
     {
-      mode = "x";
+      mode = [
+        "n"
+        "x"
+      ];
       key = "<leader>rf";
-      action = ":Refactor extract_to_file ";
+      action.__raw = "function() return require('refactoring').extract_func_to_file() end";
       options = {
         desc = "Extract to file";
+        expr = true;
       };
     }
     {
-      mode = "x";
+      mode = [
+        "n"
+        "x"
+      ];
       key = "<leader>rv";
-      action = ":Refactor extract_var ";
+      action.__raw = "function() return require('refactoring').extract_var() end";
       options = {
         desc = "Extract variable";
+        expr = true;
       };
     }
     {
@@ -883,33 +895,40 @@
         "x"
       ];
       key = "<leader>ri";
-      action = "<cmd>Refactor inline_var<CR>";
+      action.__raw = "function() return require('refactoring').inline_var() end";
       options = {
         desc = "Inline variable";
+        expr = true;
       };
     }
     {
-      mode = "n";
+      mode = [
+        "n"
+        "x"
+      ];
       key = "<leader>rI";
-      action = "<cmd>Refactor inline_func<CR>";
+      action.__raw = "function() return require('refactoring').inline_func() end";
       options = {
         desc = "Inline function";
+        expr = true;
       };
     }
     {
       mode = "n";
       key = "<leader>rb";
-      action = ":Refactor extract_block ";
+      action.__raw = "function() return require('refactoring').extract_func() end";
       options = {
-        desc = "Extract block";
+        desc = "Extract function";
+        expr = true;
       };
     }
     {
       mode = "n";
       key = "<leader>rB";
-      action = ":Refactor extract_block_to_file ";
+      action.__raw = "function() return require('refactoring').extract_func_to_file() end";
       options = {
-        desc = "Extract block to file";
+        desc = "Extract function to file";
+        expr = true;
       };
     }
     {
@@ -918,25 +937,31 @@
         "x"
       ];
       key = "<leader>rp";
-      action = "<cmd>lua require('refactoring').debug.print_var()<CR>";
+      action.__raw = "function() return require('refactoring.debug').print_var({ output_location = 'below' }) end";
       options = {
         desc = "Debug: print variable";
+        expr = true;
       };
     }
     {
       mode = "n";
       key = "<leader>rP";
-      action = "<cmd>lua require('refactoring').debug.printf({below=false})<CR>";
+      action.__raw = "function() return require('refactoring.debug').print_loc({ output_location = 'above' }) end";
       options = {
-        desc = "Debug: printf";
+        desc = "Debug: print location";
+        expr = true;
       };
     }
     {
-      mode = "n";
+      mode = [
+        "n"
+        "x"
+      ];
       key = "<leader>rc";
-      action = "<cmd>lua require('refactoring').debug.cleanup({})<CR>";
+      action.__raw = "function() return require('refactoring.debug').cleanup({}) end";
       options = {
         desc = "Debug: cleanup prints";
+        expr = true;
       };
     }
 
