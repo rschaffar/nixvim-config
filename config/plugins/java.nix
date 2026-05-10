@@ -116,7 +116,6 @@ in
         end
 
         local root_markers = {
-          ".git",
           "mvnw",
           "gradlew",
           "pom.xml",
@@ -126,7 +125,10 @@ in
           "settings.gradle.kts",
         }
 
-        local root_dir = vim.fs.root(args.buf, root_markers)
+        local root_dir = vim.fs.root(args.buf, ".git")
+        if not root_dir then
+          root_dir = vim.fs.root(args.buf, root_markers)
+        end
         if not root_dir then
           root_dir = vim.fs.dirname(vim.api.nvim_buf_get_name(args.buf))
         end
