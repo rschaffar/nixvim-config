@@ -26,7 +26,7 @@ in
         neotest.setup({
           adapters = {
             require("neotest-java")({
-              incremental_build = true,
+              incremental_build = false,
             }),
           },
         })
