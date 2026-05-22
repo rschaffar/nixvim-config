@@ -133,5 +133,16 @@
     vim.api.nvim_create_user_command("Format", function()
       vim.lsp.buf.format()
     end, {})
+
+    vim.keymap.set("n", "<C-M-j>", function()
+      local file = vim.api.nvim_buf_get_name(0)
+      vim.cmd("write")
+      local result = vim.system({ "my-java-format", file }, { text = true }):wait()
+      if result.code ~= 0 then
+        vim.notify(result.stderr ~= "" and result.stderr or result.stdout, vim.log.levels.ERROR)
+        return
+      end
+      vim.cmd("checktime")
+    end, { desc = "Format Java with my-java-format" })
   '';
 }
