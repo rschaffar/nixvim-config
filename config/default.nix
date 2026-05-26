@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  kokoro-say,
   light ? false,
   ...
 }:
@@ -65,6 +64,5 @@
       glow
       lazygit
       lazydocker
-    ])
-    ++ lib.optional (!light && kokoro-say != null) kokoro-say;
+    ]);
 }

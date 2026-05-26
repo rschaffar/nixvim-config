@@ -8,10 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
-    kokoro-tts = {
-      url = "github:rschaffar/kokoro-tts";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -35,11 +31,6 @@
             module = import ./config;
             extraSpecialArgs = {
               inherit light;
-              kokoro-say =
-                if !light && inputs.kokoro-tts.packages ? ${system} then
-                  inputs.kokoro-tts.packages.${system}.default
-                else
-                  null;
             };
           };
 

@@ -491,29 +491,6 @@
       };
     }
 
-  ] ++ lib.optionals (!light) [
-    # === TTS (Text-to-Speech) ===
-    {
-      mode = "v";
-      key = "<leader>as";
-      action.__raw = ''
-        function()
-          vim.cmd('normal! "zy')
-          local text = vim.fn.getreg('z')
-          if text == "" then
-            vim.notify("No text selected", vim.log.levels.WARN)
-            return
-          end
-          vim.notify("Speaking selection...", vim.log.levels.INFO)
-          vim.system({'kokoro-say', text}, {detach = true})
-        end
-      '';
-      options = {
-        desc = "Speak selection (TTS)";
-      };
-    }
-  ] ++ [
-
     # === EXPAND REGION ===
     {
       mode = [

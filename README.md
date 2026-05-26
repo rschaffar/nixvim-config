@@ -36,7 +36,7 @@ nix run github:rschaffar/nixvim-config#light
 nix flake check
 ```
 
-The `light` output disables the heaviest bundled tooling (Java, C/C++, Python, Scala, JS/TS, Bash, Nix LSP stacks, DAP helpers, Git tooling, extra desktop utilities, and Kokoro TTS) while keeping the core editor/plugins.
+The `light` output disables the heaviest bundled tooling (Java, C/C++, Python, Scala, JS/TS, Bash, Nix LSP stacks, DAP helpers, Git tooling, and extra desktop utilities) while keeping the core editor/plugins.
 
 To integrate into an existing flake, add this as an input and include the package in your environment.
 
