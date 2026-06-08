@@ -353,6 +353,14 @@
     }
     {
       mode = "n";
+      key = "<leader>gu";
+      action = "<cmd>DiffviewOpen @{u}..HEAD<CR>";
+      options = {
+        desc = "Diffview vs upstream";
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>gL";
       action = "<cmd>DiffviewFileHistory --range=origin/HEAD...HEAD --right-only --no-merges<CR>";
       options = {
