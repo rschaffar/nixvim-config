@@ -191,6 +191,22 @@
     }
     {
       mode = "n";
+      key = "<leader>gG";
+      action = "<cmd>LazyGitCurrentFile<CR>";
+      options = {
+        desc = "Open LazyGit for current file repo";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gf";
+      action = "<cmd>LazyGitFilterCurrentFile<CR>";
+      options = {
+        desc = "Open LazyGit current file history";
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>gs";
       action = "<cmd>Git<CR>";
       options = {
