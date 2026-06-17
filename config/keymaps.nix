@@ -271,7 +271,7 @@
     }
     {
       mode = "n";
-      key = "<leader>gu";
+      key = "<leader>gk";
       action = "<cmd>Gitsigns preview_hunk<CR>";
       options = {
         desc = "Git preview hunk";
