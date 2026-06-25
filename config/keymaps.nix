@@ -500,6 +500,33 @@
   ] ++ [
     {
       mode = "n";
+      key = "<leader>me";
+      action.__raw = ''
+        function()
+          local file = vim.fn.expand("%:p")
+          if file == "" then
+            vim.notify("Current buffer has no file path", vim.log.levels.WARN)
+            return
+          end
+
+          if vim.bo.modified then
+            vim.cmd.write()
+          end
+
+          if vim.fn.executable("zettlr") ~= 1 then
+            vim.notify("zettlr is not available in PATH", vim.log.levels.ERROR)
+            return
+          end
+
+          vim.fn.jobstart({ "zettlr", file }, { detach = true })
+        end
+      '';
+      options = {
+        desc = "Markdown external (Zettlr)";
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>mr";
       action = "<cmd>RenderMarkdown buf_toggle<CR>";
       options = {
