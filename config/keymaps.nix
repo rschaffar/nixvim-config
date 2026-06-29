@@ -460,6 +460,14 @@
         desc = "Format code";
       };
     }
+    {
+      mode = "n";
+      key = "<leader>D";
+      action = "<cmd>DiffClipboard<CR>";
+      options = {
+        desc = "Diff clipboard";
+      };
+    }
 
     # === YANK PATHS ===
     {
