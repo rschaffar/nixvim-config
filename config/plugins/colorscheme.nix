@@ -21,6 +21,32 @@
 
   # Theme switcher (Telescope picker with live preview)
   extraConfigLua = ''
+    -- Markdown inline strikethrough is provided by Tree-sitter's
+    -- @markup.strikethrough capture. Removing that capture requires replacing
+    -- the whole markdown_inline query, so just override the markdown-specific
+    -- highlight group and keep the parser/query intact.
+    local function _disable_markdown_inline_strikethrough()
+      local hl = {}
+      for _, group in ipairs({ "@markup.strikethrough.markdown_inline", "@markup.strikethrough" }) do
+        local ok, existing = pcall(vim.api.nvim_get_hl, 0, { name = group, link = false })
+        if ok and not vim.tbl_isempty(existing) then
+          hl = existing
+          break
+        end
+      end
+
+      hl.strikethrough = false
+      if type(hl.cterm) == "table" then
+        hl.cterm.strikethrough = false
+      end
+      vim.api.nvim_set_hl(0, "@markup.strikethrough.markdown_inline", hl)
+    end
+
+    _disable_markdown_inline_strikethrough()
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      callback = _disable_markdown_inline_strikethrough,
+    })
+
     local _theme_switcher_themes = {
       -- Gruvbox
       "gruvbox",
