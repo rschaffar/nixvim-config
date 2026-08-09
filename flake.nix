@@ -26,7 +26,16 @@
 
           mkNixvimModule = light: {
             inherit system;
-            module = import ./config;
+            module = {
+              imports = [ ./config ];
+
+              # Keep Nixvim on this flake's nixpkgs revision and allow only
+              # the unfree language server required by copilot.lua.
+              nixpkgs = {
+                source = inputs.nixpkgs;
+                config.allowUnfreePredicate = pkg: lib.getName pkg == "copilot-language-server";
+              };
+            };
             extraSpecialArgs = {
               inherit light;
             };
