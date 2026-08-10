@@ -4,9 +4,9 @@ A fully declarative Neovim configuration built as a [Nix flake](https://nixos.wi
 
 ## Features
 
-**LSP servers:** Lua, Nix, Bash, JSON, C/C++, Rust, Java, Python, Scala (Metals), LaTeX
+**LSP servers:** Lua, Nix, Bash, JSON, JavaScript/TypeScript, C/C++, Rust, Java, C#/.NET (Roslyn), Python, Scala (Metals), LaTeX
 
-**Treesitter grammars:** Nix, Vim, Bash, Lua, Python, JSON, Java, Rust, C, C++, Markdown, YAML, TOML, Scala
+**Treesitter grammars:** Nix, Vim/Vimdoc, Bash, Lua, Python, JSON, Java, C#, Rust, C/C++, Markdown, YAML, TOML, Scala, JavaScript/TypeScript/TSX/JSDoc
 
 **Plugins:**
 - Completion via nvim-cmp + Copilot
@@ -25,6 +25,8 @@ A fully declarative Neovim configuration built as a [Nix flake](https://nixos.wi
 
 ## Usage
 
+C# language features use [roslyn.nvim](https://github.com/seblyng/roslyn.nvim) with the Roslyn server from Nixpkgs. A .NET SDK must be on `PATH` (SDK 10+ is recommended); launching Neovim from the project's development shell lets `global.json` select the intended SDK.
+
 ```bash
 # Run the full config directly
 nix run github:rschaffar/nixvim-config
@@ -36,7 +38,7 @@ nix run github:rschaffar/nixvim-config#light
 nix flake check
 ```
 
-The `light` output disables the heaviest bundled tooling (Java, C/C++, Python, Scala, JS/TS, Bash, Nix LSP stacks, DAP helpers, Git tooling, and extra desktop utilities) while keeping the core editor/plugins.
+The `light` output disables the heaviest bundled tooling (Java, C#/.NET, C/C++, Python, Scala, JS/TS, Bash, Nix LSP stacks, DAP helpers, Git tooling, and extra desktop utilities) while keeping the core editor/plugins.
 
 To integrate into an existing flake, add this as an input and include the package in your environment.
 

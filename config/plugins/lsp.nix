@@ -102,6 +102,10 @@
     };
   };
 
+  # Use the actively maintained Roslyn server used by VS Code's C# extension.
+  # roslyn.nvim also handles solution selection and source-generated files.
+  plugins.roslyn.enable = !light;
+
   plugins.schemastore = {
     enable = !light;
     json.enable = !light;
