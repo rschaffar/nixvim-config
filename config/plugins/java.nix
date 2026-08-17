@@ -2,6 +2,23 @@
 let
   javaDebugServer = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server";
   javaTestServer = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
+  sbtEclipsePlugin = pkgs.writeText "sbt-eclipse-6.2.0.sbt" ''
+    addSbtPlugin("com.github.sbt" % "sbt-eclipse" % "6.2.0")
+  '';
+  javaImportSbt = pkgs.writeShellApplication {
+    name = "java-import-sbt";
+    runtimeInputs = with pkgs; [
+      coreutils
+      findutils
+      git
+      gnugrep
+      sbt
+    ];
+    text = ''
+      export SBT_ECLIPSE_PLUGIN=${sbtEclipsePlugin}
+      ${builtins.readFile ../scripts/java-import-sbt.sh}
+    '';
+  };
 in
 {
   extraPlugins = with pkgs.vimPlugins; [
@@ -13,11 +30,13 @@ in
     FixCursorHold-nvim
   ];
 
-  extraPackages = with pkgs; [
-    jdt-language-server
-    jdk17
-    jdk21
-  ];
+  extraPackages =
+    (with pkgs; [
+      jdt-language-server
+      jdk17
+      jdk21
+    ])
+    ++ [ javaImportSbt ];
 
   extraConfigLua = ''
     do
@@ -34,6 +53,7 @@ in
     end
 
     local java_group = vim.api.nvim_create_augroup("UserJavaConfig", { clear = true })
+    local sbt_import_command = "${javaImportSbt}/bin/java-import-sbt"
 
     local function java_bundles()
       local bundles = {}
@@ -105,6 +125,14 @@ in
       vim.g.java_dap_setup_done = true
     end
 
+    local function buffer_path_or_cwd(bufnr)
+      local name = vim.api.nvim_buf_get_name(bufnr)
+      if name ~= "" and vim.bo[bufnr].buftype == "" then
+        return name
+      end
+      return vim.fn.getcwd()
+    end
+
     vim.api.nvim_create_autocmd("FileType", {
       group = java_group,
       pattern = "java",
@@ -171,6 +199,65 @@ in
         }
 
         jdtls.start_or_attach(config)
+      end,
+    })
+
+    local sbt_import_running = false
+    vim.api.nvim_create_user_command("JavaImportSbt", function()
+      if sbt_import_running then
+        vim.notify("An SBT import is already running", vim.log.levels.WARN)
+        return
+      end
+
+      local source = buffer_path_or_cwd(vim.api.nvim_get_current_buf())
+      sbt_import_running = true
+      vim.notify("Generating Eclipse metadata from the SBT build...", vim.log.levels.INFO)
+      vim.system({ sbt_import_command, source }, { text = true }, function(result)
+        vim.schedule(function()
+          sbt_import_running = false
+          local output = vim.trim((result.stdout or "") .. (result.stderr or ""))
+          if #output > 4000 then
+            output = output:sub(-4000)
+          end
+
+          if result.code ~= 0 then
+            vim.notify("SBT import failed:\n" .. output, vim.log.levels.ERROR)
+            return
+          end
+
+          vim.notify(
+            "SBT metadata generated. Restart Neovim so JDT LS reloads it.",
+            vim.log.levels.INFO,
+            { title = "SBT / JDT LS", timeout = 10000 }
+          )
+        end)
+      end)
+    end, {
+      desc = "Generate Eclipse/JDT metadata from an SBT build",
+    })
+
+    vim.api.nvim_create_autocmd("VimEnter", {
+      group = java_group,
+      once = true,
+      callback = function()
+        vim.defer_fn(function()
+          local source = buffer_path_or_cwd(vim.api.nvim_get_current_buf())
+          vim.system({ sbt_import_command, "--check", source }, { text = true }, function(result)
+            if result.code ~= 10 and result.code ~= 11 then
+              return
+            end
+
+            vim.schedule(function()
+              local reason = result.code == 10 and "missing" or "older than the SBT build"
+              vim.notify(
+                "JDT LS cannot import SBT directly.\n"
+                  .. "Eclipse metadata is " .. reason .. "; run :JavaImportSbt and restart Neovim.",
+                vim.log.levels.WARN,
+                { title = "SBT / JDT LS", timeout = 10000 }
+              )
+            end)
+          end)
+        end, 250)
       end,
     })
   '';

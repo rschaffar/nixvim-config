@@ -4,6 +4,22 @@
   light ? false,
   ...
 }:
+let
+  # Metals indexes Java sources through javac internals, but the nixpkgs launcher
+  # does not export the required JDK modules.
+  metalsWithJavacAccess = pkgs.metals.overrideAttrs (oldAttrs: {
+    extraJavaOpts =
+      (oldAttrs.extraJavaOpts or "")
+      + " "
+      + lib.concatStringsSep " " [
+        "--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED"
+        "--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED"
+        "--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED"
+        "--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED"
+        "--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
+      ];
+  });
+in
 {
   plugins.lsp = {
     enable = true;
@@ -76,7 +92,10 @@
       };
 
       texlab.enable = true;
-      metals.enable = true;
+      metals = {
+        enable = true;
+        package = metalsWithJavacAccess;
+      };
 
       basedpyright = {
         enable = true;
