@@ -9,6 +9,7 @@
     ./options.nix
     ./keymaps.nix
     ./autocmds.nix
+    ./format.nix
     ./plugins/colorscheme.nix
     ./plugins/lualine.nix
     ./plugins/telescope.nix

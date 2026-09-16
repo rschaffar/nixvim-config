@@ -42,6 +42,34 @@ The `light` output disables the heaviest bundled tooling (Java, C#/.NET, C/C++, 
 
 To integrate into an existing flake, add this as an input and include the package in your environment.
 
+## Project formatters
+
+`Ctrl-Alt-L` runs `:Format`. It searches upward from the current file for a trusted
+`.nvim-format.json`. When that file defines the current Neovim filetype, its command receives the
+current buffer on standard input and must return only formatted text on standard output. The command
+runs from the directory containing the configuration file. For example:
+
+```json
+{
+  "version": 1,
+  "formatters": {
+    "java": {
+      "command": ["java-quality", "format", "--stdin", "{file}"],
+      "timeout_ms": 300000
+    }
+  }
+}
+```
+
+Command entries are argument arrays, not shell expressions. `{file}` expands to the absolute buffer
+path and `{root}` to the directory containing `.nvim-format.json`. The executable must be available in
+Neovim's environment. Neovim prompts before trusting a new or changed project formatter file and
+persists the decision in its standard trust database.
+
+If there is no project file or no entry for the current filetype, `:Format` falls back to
+`vim.lsp.buf.format()`. Invalid, untrusted, timed-out, or failed project commands leave the buffer
+unchanged and do not fall back to a different formatter.
+
 ## Structure
 
 ```
@@ -50,6 +78,7 @@ config/
 ├── options.nix          # Neovim options (tabs, line numbers, etc.)
 ├── keymaps.nix          # Global keybindings
 ├── autocmds.nix         # Autocommands
+├── format.nix           # Trusted project formatter discovery and execution
 └── plugins/
     ├── lsp.nix          # LSP server configurations + keymaps
     ├── treesitter.nix   # Treesitter grammars

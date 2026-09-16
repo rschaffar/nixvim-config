@@ -153,10 +153,6 @@ in
       end,
     })
 
-    vim.api.nvim_create_user_command("Format", function()
-      vim.lsp.buf.format()
-    end, {})
-
     vim.keymap.set("n", "<C-M-j>", function()
       local file = vim.api.nvim_buf_get_name(0)
       vim.cmd("write")
