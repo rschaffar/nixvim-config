@@ -1,3 +1,39 @@
+let
+  openHistoryBeforeAgainstLocal = ''
+    function()
+      local lib = require("diffview.lib")
+      local view = lib.get_current_view()
+
+      if not view or not view.panel or not view.panel.get_log_entry_at_cursor then
+        vim.notify("No Diffview file history is active", vim.log.levels.WARN)
+        return
+      end
+
+      local file = view:infer_cur_file()
+      if not file then
+        vim.notify("Could not resolve the current history file", vim.log.levels.WARN)
+        return
+      end
+
+      local RevType = require("diffview.vcs.rev").RevType
+      local left = file.layout.a.file.rev
+      local right = view.adapter.Rev(RevType.LOCAL)
+      local DiffView = require("diffview.scene.views.diff.diff_view").DiffView
+      local working_view = DiffView({
+        adapter = view.adapter,
+        rev_arg = view.adapter:rev_to_pretty_string(left, right),
+        left = left,
+        right = right,
+        options = {
+          selected_file = file.absolute_path,
+        },
+      })
+
+      lib.add_view(working_view)
+      working_view:open()
+    end
+  '';
+in
 {
   plugins.fugitive.enable = true;
 
@@ -63,6 +99,12 @@
           key = "q";
           action = "<Cmd>DiffviewClose<CR>";
         }
+        {
+          mode = "n";
+          key = "D";
+          action.__raw = openHistoryBeforeAgainstLocal;
+          description = "Diff pre-commit state against working file";
+        }
       ];
       file_panel = [
         {
@@ -76,6 +118,12 @@
           mode = "n";
           key = "q";
           action = "<Cmd>DiffviewClose<CR>";
+        }
+        {
+          mode = "n";
+          key = "D";
+          action.__raw = openHistoryBeforeAgainstLocal;
+          description = "Diff pre-commit state against working file";
         }
         # Diffview has no native multi-select. Treat visually selected commit
         # rows as one contiguous before/after range.
