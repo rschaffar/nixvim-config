@@ -125,6 +125,20 @@ in
   # roslyn.nvim also handles solution selection and source-generated files.
   plugins.roslyn.enable = !light;
 
+  # nixpkgs' Roslyn 5.11 does not understand roslyn.nvim's default
+  # --daemon-mode argument. An after/lsp override wins over the plugin's
+  # bundled configuration while retaining its solution-selection behavior.
+  extraFiles = lib.optionalAttrs (!light) {
+    "after/lsp/roslyn.lua".text = ''
+      return {
+        cmd = {
+          "${pkgs.roslyn-ls}/bin/Microsoft.CodeAnalysis.LanguageServer",
+          "--stdio",
+        },
+      }
+    '';
+  };
+
   plugins.schemastore = {
     enable = !light;
     json.enable = !light;
